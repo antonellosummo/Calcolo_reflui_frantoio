@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+    <head>
+  
+        <meta charset="utf-8">
+        <title>Calcolatore di produzione reflui frantoio</title>
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+            <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+            <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+            <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+            <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+            <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+            <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+            <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+            <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+            <link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+            <link rel="manifest" href="/manifest.json">
+            <meta name="msapplication-TileColor" content="#ffffff">
+            <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+            <meta name="theme-color" content="#ffffff">
+    </head>
+    <body>
+      <h1 class="titoloUtility">Calcolatore di produzione reflui oleari</h1>
+
+        <body style="background-color: black;">
+
+
+
+<div id="avviso">
+  <h2>Attenzione!</h2>
+  <p>I risultati generati possono essere inesatti</p>
+  <button id="chiudi">Chiudi</button>
+</div>
+
+  <form id="calculatorForm">
+    <div class="olivebox">
+      <div class="oliveProprie">
+        <label for="olive">Olive previste da molire (kg):</label>
+        <input type="number" id="olive" name="olive"><br>
+      </div>
+      <div class="oliveCt">
+        <label for="oliveCT">Olive previste da molire in Conto Terzi (kg):</label>
+        <input type="number" id="oliveCT" name="oliveCT">
+      </div>
+      <div class="durataCampagna">
+        <label for="ggCampagna">Numero di giorni di durata campagna olearia:</label>
+        <input type="number" id="ggCampagna" name="ggCampagna">
+      </div>
+    </div>
+      <div class="lavorazione">
+      <div class="litriAcquaLavaggio">
+        <label for="acquaLavaggio">Acqua di lavaggio al giorno (litri):</label>
+        <input type="number" id="acquaLavaggio" name="acquaLavaggio">
+      </div>
+      <div class="%sansa">
+        <label for="sansa">Percentuale di Sansa (%):</label>
+       <input type="number" id="sansa" name="sansa" min="35" max="70">
+      </div>
+      <div class="%AAVV">
+        <label for="acquaVegetazione">Acque di vegetazione (%):</label>
+        <input type="number" id="acquaVegetazione" name="acquaVegetazione" min="35" max="70">
+      </div>
+      <div class="carrobotteCapacita">
+        <label for="carrobotte">Capacità del carrobotte (m³):</label>
+        <input type="number" id="carrobotte" name="carrobotte">
+      </div>
+    </div>
+  <div class="terreni">
+      <div class="s2">
+      <label for="zonaS2">Ettari in Zona S2:</label>
+      <input type="number" id="zonaS2" name="zonaS2">
+      </div>
+      <div class="s3">
+      <label for="zonaS3">Ettari in Zona S3:</label>
+      <input type="number" id="zonaS3" name="zonaS3">
+      </div>
+      <div class="s4">
+      <label for="zonaS4">Ettari in Zona S4:</label>
+      <input type="number" id="zonaS4" name="zonaS4">
+      </div>
+      
+      <div class="bottone">
+      <input type="button" value="Calcola" onclick="calculate()">
+      </div>
+      
+    </div>
+    
+  </form>
+  <a href="utility.html">
+  <div class="scene">
+    <div class="cube">
+      <span class="side top">Download</span>
+      <span class="side front">Utility</span>
+    </div>
+  </div>
+</a>
+
+  <div class="risultati">
+  <p id="result"></p>
+  </div>
+
+
+  <div id="alert" style="display: none; color: red; font-family: 'Courier New', monospace; font-size: 14px; font-weight: bold;">
+    La superficie totale non è sufficiente per lo spandimento!
+  </div>
+
+  <div class= "iframe">
+    <iframe frameborder="0" src="https://antonellosummo.github.io/aavv/" width="900" height="900" scrolling="no" style="border-radius:25px">
+    </iframe>
+  </div>
+
+
+  <a href="https://1drv.ms/f/s!AmvWTNlYSq--jGJ_8PcKQv2B3IfI?e=M92xvl" target="_blank">
+    <button>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span> Riferimenti normativi
+    </button>
+</a>
+
+  <footer>
+    <p>Created by Antonello Summo in collaboration with OpenAI's ChatGPT.</p>
+    <a href="mailto:antonello.summo@gmail.com">📧 Scrivi a antonello.summo@gmail.com per un rapporto dettagliato</a></p>
+    <div id="newlogo"><br/></div>
+ 
+</footer>
+
+<script type="text/javascript">
+  function calculate() {
+      // Ottieni i valori inseriti
+var olive = parseFloat(document.getElementById('olive').value);
+var oliveCT = parseFloat(document.getElementById('oliveCT').value);
+var ggCampagna = parseFloat(document.getElementById('ggCampagna').value);
+var sansa = parseFloat(document.getElementById('sansa').value);
+var acquaVegetazione = parseFloat(document.getElementById('acquaVegetazione').value);
+var acquaLavaggio = parseFloat(document.getElementById('acquaLavaggio').value);
+var carrobotte = parseFloat(document.getElementById('carrobotte').value);
+
+var zonaS2 = parseFloat(document.getElementById('zonaS2').value) || 0;
+var zonaS3 = parseFloat(document.getElementById('zonaS3').value) || 0;
+var zonaS4 = parseFloat(document.getElementById('zonaS4').value) || 0;
+      // Calcola la quantità di sansa e acque di vegetazione prodotte
+      var quantitaSansa = (olive + oliveCT) * (sansa / 100);
+      var quantitaAcquaVegetazione = (olive + oliveCT) * (acquaVegetazione / 100);
+
+      // Calcola il totale dell'acqua della lavatrice utilizzata
+      var totaleAcqua = (parseFloat(acquaLavaggio) * ggCampagna);
+
+      // Calcola il numero di intervalli di 15 giorni nella campagna
+     // var numIntervalliS2 = Math.floor(ggCampagna / 15);
+      //var numIntervalliS3 = Math.floor(ggCampagna / 30);
+      //var numIntervalliS4 = Math.floor(ggCampagna / 30);
+
+
+      // Calcola il volume massimo di reflui che può essere spargere per zona
+      var maxRefluiS2 = zonaS2 * 80 ;
+      var maxRefluiS3 = zonaS3 * 80 ;
+      var maxRefluiS4 = zonaS4 * 80 ;
+
+      // Converte in metri cubi
+      var quantitaSansaM3 = (quantitaSansa / 1000).toFixed(2);
+      var quantitaAcquaVegetazioneM3 = (quantitaAcquaVegetazione / 1000).toFixed(2);
+      var totaleAcquaM3 = (totaleAcqua / 1000).toFixed(2);
+
+      // Avviso per capire se il terreno è sufficiente per lo spandimento
+      var totalDistribuzione = parseFloat(quantitaAcquaVegetazioneM3) + parseFloat(totaleAcquaM3);
+      var totalCapacita = parseFloat(maxRefluiS2) + parseFloat(maxRefluiS3) + parseFloat(maxRefluiS4);
+      var totalReflui = totalDistribuzione + parseFloat(quantitaSansaM3);
+
+      if (totalCapacita < totalDistribuzione) {
+      var alertElement = document.getElementById('alert');
+      alertElement.style.display = "block";
+      var counter = 0;
+      var intervalId = setInterval(function() {
+          alertElement.style.visibility = (alertElement.style.visibility == 'hidden' ? 'visible' : 'hidden');
+          if (++counter === 4) { // lampeggia 4 volte (2 volte visibile e 2 volte nascosto)
+              clearInterval(intervalId);
+          }
+      }, 500); // lampeggia ogni 500 millisecondi
+      return;
+          }
+          
+          
+  
+      
+      // Calcola il numero effettivo di viaggi del carrobotte per zona
+      var viaggieff = Math.ceil((totalDistribuzione ) / (carrobotte));
+
+       // Controlla la divisione per zero nelle zone
+       var refluiS2 = zonaS2 !== 0 ? (totalDistribuzione / zonaS2).toFixed(2) : "Nessuna superficie";
+       var refluiS3 = zonaS3 !== 0 ? (totalDistribuzione / zonaS3).toFixed(2) : "Nessuna superficie";
+       var refluiS4 = zonaS4 !== 0 ? (totalDistribuzione / zonaS4).toFixed(2) : "Nessuna superficie";
+      
+// Mostra i risultati
+var result = "                        🀰 Quantità di Sansa prodotta: " + quantitaSansa + " kg (" + quantitaSansaM3 + " m³),<br>" + 
+           "                        🀰 Quantità di Acqua di vegetazione prodotta: " + quantitaAcquaVegetazione + " litri (" + quantitaAcquaVegetazioneM3 + " m³),<br>" + 
+           "                        🀰 Totale dell'acqua utilizzata: " + totaleAcqua + " litri (" + totaleAcquaM3 + " m³),<br>" +
+           "                        🀰 Max reflui in Zona S2/anno (INTERVALLO SPANDIMENTO >15 GIORNI): " + maxRefluiS2 + " m³,<br>" + 
+           "                        🀰 Max reflui in Zona S3/anno (INTERVALLO SPANDIMENTO >15-30 GIORNI): " + maxRefluiS3 + " m³,<br>" + 
+           "                        🀰 Max reflui in Zona S4/anno (INTERVALLO SPANDIMENTO >30 GIORNI): " + maxRefluiS4 + " m³,<br>" +
+           "                        🀰 Reflui distribuiti/ha -condizione attuale- in Zona S2: " + refluiS2 + " m³,<br>" +       
+           "                        🀰 Reflui distribuiti/ha -condizione attuale- in Zona S3: " + refluiS3 + " m³,<br>" + 
+           "                        🀰 Reflui distribuiti/ha -condizione attuale- in Zona S4: " + refluiS4 + " m³,<br>" + 
+           "                        🀰 Numero viaggi da effettuare per svuotare gli stoccaggi: " + viaggieff + "<br>" ; 
+
+
+
+      document.getElementById('result').innerHTML = result;
+      }
+// Funzione per mostrare la finestra di avviso dopo un minuto
+function mostraAvviso() {
+          var avviso = document.getElementById('avviso');
+          avviso.style.display = 'block';
+      }
+
+      // Funzione per chiudere la finestra di avviso
+      function chiudiAvviso() {
+          var avviso = document.getElementById('avviso');
+          avviso.style.display = 'none';
+      }
+
+      // Aggiungi un listener per l'evento click sul pulsante "chiudi"
+      var chiudi = document.getElementById('chiudi');
+      chiudi.addEventListener('click', chiudiAvviso);
+
+      // Imposta un timeout di 1 minuto per mostrare l'avviso
+      setTimeout(mostraAvviso, 60000); // 60000 millisecondi = 1 minuto
+  </script>
+      <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
+<!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+  _Hasync.push(['Histats.start', '1,4771871,4,26,190,115,00011000']);
+  _Hasync.push(['Histats.fasi', '1']);
+  _Hasync.push(['Histats.track_hits', '']);
+  (function() {
+  var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+  hs.src = ('//s10.histats.com/js15_as.js');
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+  })();</script>
+  <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4771871&101" alt="statistiche web gratis" border="0"></a></noscript>
+  <!-- Histats.com  END  -->
+</body>
+
+</html>
